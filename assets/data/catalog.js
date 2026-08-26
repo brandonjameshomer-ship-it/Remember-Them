@@ -56,11 +56,11 @@ window.RT_CATALOG = {
    * same words their memorial counselor uses.
    * ------------------------------------------------------------------------ */
   fonts: [
-    { id: 'roman',       name: 'Roman',        stack: '"Trajan Pro", "Cormorant Garamond", Georgia, serif',  caps: true,  weight: 500, tracking: 0.10 },
+    { id: 'roman',       name: 'Roman',        stack: '"Cinzel", "Trajan Pro", Georgia, serif',              caps: true,  weight: 500, tracking: 0.08 },
     { id: 'modern-roman',name: 'Modern Roman', stack: '"Cormorant Garamond", Georgia, "Times New Roman", serif', caps: true, weight: 600, tracking: 0.06 },
     { id: 'old-english', name: 'Old English',  stack: '"UnifrakturCook", "Old English Text MT", serif',      caps: false, weight: 700, tracking: 0.02 },
     { id: 'script',      name: 'Script',       stack: '"Pinyon Script", "Edwardian Script ITC", cursive',    caps: false, weight: 400, tracking: 0.00 },
-    { id: 'block',       name: 'Block',        stack: '"Inter", "Helvetica Neue", Arial, sans-serif',        caps: true,  weight: 600, tracking: 0.12 }
+    { id: 'block',       name: 'Block',        stack: '"IBM Plex Sans", "Helvetica Neue", Arial, sans-serif', caps: true,  weight: 600, tracking: 0.12 }
   ],
 
   /* ---------------------------------------------------------------------------

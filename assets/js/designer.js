@@ -30,11 +30,20 @@
 
   /* ------------------------------------------------------------------------ */
   /* category resolution                                                       */
-  /* ------------------------------------------------------------------------ */
+  /* -----------------------------------------------------------------------
+   * Which memorial type is being designed can change without a page load -
+   * a single-page build switches types in place - so these are set through
+   * setCategory() rather than fixed when the file is read.
+   * ------------------------------------------------------------------------ */
   var params = new URLSearchParams(location.search);
-  var category = R.find(CAT.categories, params.get('type') || CAT.categories[0].id);
-  var cfg = category.designer;
-  var STORE_KEY = 'rt.design.' + category.id;
+  var category, cfg, STORE_KEY;
+
+  function setCategory(id) {
+    category = R.find(CAT.categories, id || CAT.categories[0].id);
+    cfg = category.designer;
+    STORE_KEY = 'rt.design.' + category.id;
+  }
+  setCategory(params.get('type'));
 
   /* ------------------------------------------------------------------------ */
   /* state                                                                     */
@@ -62,12 +71,12 @@
     };
   }
 
-  var design = freshDesign();
+  var design;
 
   /* A design may arrive in the URL (a shared link) or from this browser's own
    * last session. The link wins - someone sent it deliberately. */
-  (function restore() {
-    var packed = params.get('d');
+  function restore(packed) {
+    design = freshDesign();
     if (packed) {
       try {
         var fromLink = JSON.parse(decodeURIComponent(escape(atob(packed.replace(/-/g, '+').replace(/_/g, '/')))));
@@ -81,7 +90,8 @@
       var saved = localStorage.getItem(STORE_KEY);
       if (saved) design = Object.assign(freshDesign(), JSON.parse(saved));
     } catch (e) { /* private browsing, or storage turned off */ }
-  })();
+  }
+  restore(params.get('d'));
 
   function persist() {
     try { localStorage.setItem(STORE_KEY, JSON.stringify(design)); } catch (e) {}
@@ -684,13 +694,17 @@
     update();
   }
 
-  function boot() {
+  function paintCategoryCopy() {
     $('#cat-name').textContent = category.name;
     $('#cat-lede').textContent = category.short_description;
     $('#cat-long').textContent = category.long_description;
     $('#cat-cemetery').textContent = category.cemetery_note;
     $('#summary-title').textContent = 'Your ' + category.name.replace(/s$/, '').toLowerCase() + ' so far';
     document.title = category.name + ' designer · Remember Them';
+  }
+
+  function boot() {
+    paintCategoryCopy();
 
     $('#btn-print').addEventListener('click', function () {
       track('print_proof', category.id, design.shape);
@@ -720,6 +734,21 @@
       document.fonts.ready.then(function () { update(); });
     }
   }
+
+  /* Used by the single-file build, which has no page loads to hang a category
+   * change on. The multi-page site never calls it. */
+  window.RT_DESIGNER = {
+    open: function (categoryId) {
+      setCategory(categoryId);
+      restore(null);
+      paintCategoryCopy();
+      rebuild();
+      say('');
+      track('designer_open', category.id, design.shape);
+      return category;
+    },
+    current: function () { return category; }
+  };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);

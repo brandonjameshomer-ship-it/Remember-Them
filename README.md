@@ -24,9 +24,24 @@ docs/
   CATALOG.md          how to add a type, a granite, a shape or a piece of artwork
   DRIVE-SYNC.md       how to bring photographs in from Google Drive
 tools/
-  drive-folders.json  which Drive folder feeds which memorial type
-  import-drive.js     turns a folder listing into assets/data/examples.js
+  drive-folders.json     which Drive folder feeds which memorial type
+  import-drive.js        turns a folder listing into assets/data/examples.js
+  build-standalone.js    inlines the whole thing into one HTML file
 ```
+
+## The single-file edition
+
+```sh
+node tools/build-standalone.js
+```
+
+Writes `dist/remember-them.html` — the entire designer, both views, every
+stylesheet and script inlined into one file. It can be emailed, put on a USB
+stick, or opened from a phone with no server at all. `--fragment` emits the
+body only, for embedding.
+
+`dist/` is generated and not committed; rebuild it whenever the source
+changes.
 
 ## What a family can do
 

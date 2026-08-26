@@ -27,7 +27,12 @@
   min-height: 380px;
 }
 @media (prefers-color-scheme: dark) {
-  .stage { background: linear-gradient(180deg, #232a30 0%, #1d2226 62%, #191d20 100%); }
+  :root:not([data-theme="light"]) .stage {
+    background: linear-gradient(180deg, #232a26 0%, #1d221f 62%, #191d1b 100%);
+  }
+}
+:root[data-theme="dark"] .stage {
+  background: linear-gradient(180deg, #232a26 0%, #1d221f 62%, #191d1b 100%);
 }
 .stage svg { max-height: 62vh; width: auto; max-width: 100%; display: block; }
 
@@ -126,7 +131,10 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 .chips button[aria-pressed="true"] {
   background: var(--accent); border-color: var(--accent); color: #fff;
 }
-@media (prefers-color-scheme: dark) { .chips button[aria-pressed="true"] { color: #10130f; } }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .chips button[aria-pressed="true"] { color: #0e120f; }
+}
+:root[data-theme="dark"] .chips button[aria-pressed="true"] { color: #0e120f; }
 
 .person {
   border: 1px solid var(--line-soft); border-radius: 8px;
@@ -146,7 +154,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   background: var(--bg-raised); border: 1px solid var(--line);
   border-radius: var(--radius); padding: 1.25rem 1.35rem;
 }
-.summary h2 { font-size: 1.25rem; margin-bottom: .1rem; }
+.summary h2 { font-size: 1.1rem; margin-bottom: .15rem; }
 .summary .sub { color: var(--ink-faint); font-size: .86rem; margin-bottom: 1rem; }
 .spec { margin: 0; display: grid; grid-template-columns: 12rem 1fr; gap: .2rem 1rem; font-size: .92rem; }
 .spec dt { color: var(--ink-faint); }
@@ -173,7 +181,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 
 /* ---- examples of finished work -------------------------------------------- */
 .examples { margin-top: 1.75rem; }
-.examples h2 { font-size: 1.35rem; margin-bottom: .15rem; }
+.examples h2 { font-size: 1.1rem; margin-bottom: .2rem; }
 .examples .sub { color: var(--ink-soft); font-size: .93rem; max-width: 58ch; margin-bottom: 1rem; }
 .examples .source { font-size: .8rem; color: var(--ink-faint); margin-top: .8rem; }
 
