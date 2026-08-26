@@ -1,0 +1,29 @@
+{
+  "_comment": [
+    "Which Google Drive folder feeds which memorial type.",
+    "",
+    "`folder` is the folder name exactly as it appears in Drive. `id` is the",
+    "Drive folder id, which you can read off the end of the folder's URL.",
+    "Leave either null until the folder is known.",
+    "",
+    "A Drive folder with no matching entry here is reported by",
+    "tools/import-drive.js and skipped, rather than guessed at."
+  ],
+
+  "source": {
+    "name": "Memorial Options",
+    "id": "1P4JZ8GzZFylcqwEfBX4H18bM5Y5vuJYF",
+    "url": "https://drive.google.com/drive/folders/1P4JZ8GzZFylcqwEfBX4H18bM5Y5vuJYF"
+  },
+
+  "map": [
+    { "categoryId": "slant-pillow", "folder": null, "id": null },
+    { "categoryId": "upright",      "folder": null, "id": null },
+    { "categoryId": "flat",         "folder": null, "id": null },
+    { "categoryId": "sculpture",    "folder": null, "id": null },
+    { "categoryId": "bench",        "folder": null, "id": null },
+    { "categoryId": "ledger",       "folder": null, "id": null },
+    { "categoryId": "unique",       "folder": null, "id": null },
+    { "categoryId": "estate",       "folder": null, "id": null }
+  ]
+}

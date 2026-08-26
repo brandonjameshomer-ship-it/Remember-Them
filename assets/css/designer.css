@@ -170,3 +170,45 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   .print-only { display: block !important; }
 }
 .print-only { display: none; }
+
+/* ---- examples of finished work -------------------------------------------- */
+.examples { margin-top: 1.75rem; }
+.examples h2 { font-size: 1.35rem; margin-bottom: .15rem; }
+.examples .sub { color: var(--ink-soft); font-size: .93rem; max-width: 58ch; margin-bottom: 1rem; }
+.examples .source { font-size: .8rem; color: var(--ink-faint); margin-top: .8rem; }
+
+.example-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: .6rem;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.example-grid button {
+  display: block; width: 100%; padding: 0; cursor: pointer;
+  background: var(--bg-sunk); border: 1px solid var(--line);
+  border-radius: 8px; overflow: hidden;
+}
+.example-grid button:hover { border-color: var(--ink-faint); }
+.example-grid img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 60;
+  background: rgba(14,16,18,.86);
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center;
+  gap: 1rem; padding: clamp(1rem, 4vw, 3rem);
+}
+.lightbox[hidden] { display: none; }
+.lightbox-figure { margin: 0; text-align: center; max-height: 88vh; overflow: auto; }
+.lightbox-figure img {
+  max-width: 100%; max-height: 74vh; border-radius: 6px;
+  background: #fff; display: inline-block;
+}
+.lightbox-figure figcaption {
+  color: #e9e6e1; font-size: .9rem; margin-top: .8rem; max-width: 62ch;
+  margin-inline: auto;
+}
+.lb-close { position: absolute; top: 1rem; right: 1rem; }
+.lb-nav { font-size: 1.6rem; line-height: 1; padding: .3rem .8rem; }
+@media (max-width: 620px) {
+  .lightbox { grid-template-columns: 1fr; }
+  .lb-nav { display: none; }
+}
