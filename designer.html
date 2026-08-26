@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memorial designer · Remember Them</title>
+<meta name="description" content="Design a memorial at your own pace. Nothing is sent anywhere until you choose to send it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link data-webfonts rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Pinyon+Script&family=UnifrakturCook:wght@700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/designer.css">
+</head>
+<body>
+<a class="skip-link" href="#stage">Skip to the preview</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html">Remember Them<span>Memorial design</span></a>
+    <nav aria-label="Main">
+      <a href="index.html">All memorial types</a>
+      <a href="index.html#help">Ask a question</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+
+  <section style="padding:1.75rem 0 .25rem">
+    <h1 id="cat-name">Memorial designer</h1>
+    <p class="lede measure" id="cat-lede" style="font-size:1.08rem;color:var(--ink-soft)"></p>
+    <p class="measure" id="cat-long" style="color:var(--ink-soft);font-size:.96rem"></p>
+    <div class="callout">
+      <h2>Before you go far into this</h2>
+      <p id="cat-cemetery"></p>
+    </div>
+    <p class="measure" style="font-size:.93rem;color:var(--ink-faint)">
+      Change anything as often as you like. Your design stays in this browser, on this device —
+      it is not sent to us, and there is no clock on it. You can come back to it tomorrow.
+    </p>
+  </section>
+
+  <div class="designer">
+
+    <div class="stage-col">
+      <div class="stage" id="stage" aria-live="off"></div>
+
+      <div class="stage-bar">
+        <button type="button" class="btn" id="btn-print">Print a proof</button>
+        <button type="button" class="btn" id="btn-png">Save as an image</button>
+        <button type="button" class="btn" id="btn-share">Copy a link to this design</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn btn-quiet" id="btn-reset">Start again</button>
+      </div>
+
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+
+      <div class="summary">
+        <h2 id="summary-title">Your design so far</h2>
+        <p class="sub">A working sheet, not an order. Print it, save it, or bring it in.</p>
+        <dl class="spec" id="spec"></dl>
+
+        <div class="cta-band">
+          <p class="note">
+            When you are ready — and only then — we will look at this together and talk
+            about what your cemetery allows.
+          </p>
+          <a class="btn btn-primary" id="btn-cta" href="index.html#help">Talk it through with us</a>
+          <label class="btn" for="file-load">Open a saved design</label>
+          <input type="file" id="file-load" accept="application/json,.json" class="visually-hidden">
+          <button type="button" class="btn" id="btn-save">Save this design</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls" id="controls" aria-label="Design controls"></div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>Remember Them — take the time you need.</span>
+    <nav aria-label="Footer">
+      <a href="index.html">Memorial types</a>
+      <a href="index.html#help">Ask a question</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/data/catalog.js"></script>
+<script src="assets/js/shapes.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/analytics.js"></script>
+<script src="assets/js/designer.js"></script>
+</body>
+</html>

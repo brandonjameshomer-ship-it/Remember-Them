@@ -1,0 +1,172 @@
+/* =============================================================================
+ * Remember Them - the designer
+ * =========================================================================== */
+
+.designer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 1.75rem;
+  align-items: start;
+  padding: 1.75rem 0 4rem;
+}
+@media (max-width: 1040px) {
+  .designer { grid-template-columns: 1fr; }
+}
+
+/* ---- the preview stage ---------------------------------------------------- */
+.stage-col { position: sticky; top: 1.25rem; }
+@media (max-width: 1040px) { .stage-col { position: static; } }
+
+.stage {
+  background: linear-gradient(180deg, #eef1f4 0%, #e4e8e2 62%, #dfe3da 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  display: grid; place-items: center;
+  min-height: 380px;
+}
+@media (prefers-color-scheme: dark) {
+  .stage { background: linear-gradient(180deg, #232a30 0%, #1d2226 62%, #191d20 100%); }
+}
+.stage svg { max-height: 62vh; width: auto; max-width: 100%; display: block; }
+
+.stage-bar {
+  display: flex; gap: .5rem; flex-wrap: wrap; align-items: center;
+  margin-top: .9rem;
+}
+.stage-bar .spacer { margin-left: auto; }
+
+.status {
+  margin-top: .6rem; min-height: 1.4em;
+  font-size: .87rem; color: var(--ink-soft);
+}
+
+/* ---- the controls --------------------------------------------------------- */
+.controls { display: flex; flex-direction: column; gap: .75rem; }
+
+.panel {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.panel > summary {
+  cursor: pointer; list-style: none;
+  padding: .85rem 1rem;
+  font-weight: 600; font-size: .96rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.panel > summary::-webkit-details-marker { display: none; }
+.panel > summary::after {
+  content: ""; margin-left: auto;
+  width: .5rem; height: .5rem;
+  border-right: 1.5px solid var(--ink-faint);
+  border-bottom: 1.5px solid var(--ink-faint);
+  transform: rotate(45deg); transition: transform .18s ease;
+}
+.panel[open] > summary::after { transform: rotate(-135deg); }
+.panel > summary:hover { background: var(--bg-sunk); }
+.panel .panel-body { padding: .25rem 1rem 1.1rem; border-top: 1px solid var(--line-soft); }
+
+.field { margin-top: .9rem; }
+.field > label, .field > .label {
+  display: block; font-size: .82rem; font-weight: 600;
+  color: var(--ink-soft); margin-bottom: .35rem;
+  letter-spacing: .01em;
+}
+.field .hint { font-size: .78rem; color: var(--ink-faint); margin-top: .3rem; }
+
+input[type="text"], select, textarea {
+  width: 100%; font: inherit; font-size: .93rem;
+  padding: .5rem .6rem;
+  background: var(--bg); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 7px;
+}
+input[type="text"]:focus, select:focus, textarea:focus { border-color: var(--focus); }
+
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+
+.range-row { display: flex; align-items: baseline; gap: .6rem; }
+.range-row output {
+  font-variant-numeric: tabular-nums; font-size: .85rem;
+  color: var(--ink-soft); min-width: 4.5ch; text-align: right;
+}
+
+/* swatches, shapes, motifs - all the same picker mechanic */
+.picker { display: grid; gap: .4rem; }
+.picker.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.picker.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.picker.cols-5 { grid-template-columns: repeat(5, 1fr); }
+
+.picker button {
+  font: inherit; cursor: pointer;
+  background: var(--bg); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 7px;
+  padding: .35rem; display: grid; gap: .25rem; justify-items: center;
+  font-size: .7rem; line-height: 1.25; text-align: center;
+}
+.picker button:hover { border-color: var(--ink-faint); }
+.picker button[aria-pressed="true"] {
+  border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent);
+  background: var(--bg-raised);
+}
+.picker button svg { display: block; width: 100%; height: 34px; }
+.picker .sw {
+  width: 100%; height: 26px; border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.18);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.chips button {
+  font: inherit; font-size: .82rem; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 99px;
+  padding: .28rem .75rem; background: var(--bg); color: var(--ink-soft);
+}
+.chips button[aria-pressed="true"] {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+}
+@media (prefers-color-scheme: dark) { .chips button[aria-pressed="true"] { color: #10130f; } }
+
+.person {
+  border: 1px solid var(--line-soft); border-radius: 8px;
+  padding: .6rem .7rem .8rem; margin-top: .7rem; background: var(--bg);
+}
+.person .person-head {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .78rem; font-weight: 600; color: var(--ink-faint);
+  text-transform: uppercase; letter-spacing: .08em;
+}
+.person .person-head button { margin-left: auto; }
+.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+
+/* ---- summary sheet -------------------------------------------------------- */
+.summary {
+  margin-top: 1.5rem;
+  background: var(--bg-raised); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1.25rem 1.35rem;
+}
+.summary h2 { font-size: 1.25rem; margin-bottom: .1rem; }
+.summary .sub { color: var(--ink-faint); font-size: .86rem; margin-bottom: 1rem; }
+.spec { margin: 0; display: grid; grid-template-columns: 12rem 1fr; gap: .2rem 1rem; font-size: .92rem; }
+.spec dt { color: var(--ink-faint); }
+.spec dd { margin: 0; color: var(--ink); }
+@media (max-width: 560px) { .spec { grid-template-columns: 1fr; } .spec dd { margin-bottom: .5rem; } }
+
+.cta-band {
+  margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px solid var(--line-soft);
+  display: flex; gap: .6rem; flex-wrap: wrap; align-items: center;
+}
+.cta-band .note { font-size: .86rem; color: var(--ink-faint); flex: 1 1 16rem; }
+
+/* ---- print proof ---------------------------------------------------------- */
+@media print {
+  .site-head, .site-foot, .controls, .stage-bar, .status, .cta-band, .skip-link { display: none !important; }
+  body { background: #fff; color: #000; }
+  .designer { grid-template-columns: 1fr; gap: 1rem; padding: 0; }
+  .stage { border: 1px solid #999; background: #fff; box-shadow: none; page-break-inside: avoid; }
+  .stage svg { max-height: 4.6in; }
+  .summary { border: 1px solid #999; page-break-inside: avoid; }
+  .print-only { display: block !important; }
+}
+.print-only { display: none; }
